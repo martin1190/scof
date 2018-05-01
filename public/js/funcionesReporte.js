@@ -90,13 +90,17 @@ function DiaxFechas(t){
 function reporteGenDg(){
 fi=$('#fecIniD').val()
 ff=$('#fecFinD').val()
-di=$('diagnostico').val()
+di=$('#diagnostico').val()
     if(fi!='Seleccionar'){
         if(ff.length>9){
-            if(di.length>1){
-                alertify.success('SI hay')
+            if(ff<fi){
+                alertify.error('La fecha final no puede ser antes de la fecha inicial')
             }else{
-                alertify.error('Indique un diagnostico')
+                if(di!='Seleccionar'){
+                    
+                }else{
+                    alertify.error('Indique un diagnostico')
+                }                
             }
         }else{
             alertify.error('Indique una fecha de fin')

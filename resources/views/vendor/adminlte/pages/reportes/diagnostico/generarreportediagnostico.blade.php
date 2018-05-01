@@ -43,7 +43,7 @@
                     @endforeach
                   </select>
                 </div>
-                <a class="btn btn-success btn-sm" id="btnBus">Generar</a>
+                <a class="btn btn-success btn-sm" id="btnBusRD">Generar</a>
               </div>
             </form>
           </div>
