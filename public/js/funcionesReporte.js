@@ -94,9 +94,9 @@ di=$('diagnostico').val()
     if(fi!='Seleccionar'){
         if(ff.length>9){
             if(di.length>1){
-
+                alertify.success('SI hay')
             }else{
-
+                alertify.error('Indique un diagnostico')
             }
         }else{
             alertify.error('Indique una fecha de fin')
