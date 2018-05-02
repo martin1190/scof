@@ -75,4 +75,16 @@ class reporteController extends Controller
     public function ReporteDiagnostico(){
         return view('vendor.adminlte.pages.reportes.diagnostico.generarreportediagnostico');
     }
+
+    //para obtener los datos del reporte por diagnostico
+    public function genRerporteDiagnostico(Request $request){
+        if($request->ajax()){
+            $ddg=DB::select('select p.id, c.nconsulta, p.nombre, pm.planmedico, dp.fechacon, d.diagnostico, d.cie from paciente p, consulta c, planmedico pm, datoprevio dp, diagnostico d
+                where p.id=c.paciente_id and  c.id=pm.consulta_id and c.id=dp.consulta_id and c.id=d.consulta_id and
+                dp.fechacon between :fi and :ff order by c.id asc ',['fi'=>$request->fi,'ff'=>$request->ff]);
+            return view('vendor.adminlte.pages.reportes.diagnostico.listaresumendiagnostico',compact('ddg'));
+        }else{
+            return Response()->json(['mensaje'=>'No se recibieron datos']);
+        }
+    }
 }

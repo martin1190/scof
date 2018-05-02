@@ -16,8 +16,11 @@ window.addEventListener('load', function(){
         DiaxFechas(ts)        
     });
     //Para los reportes de diagnostico
-    $('#printRD').click(function (){
+    $('#btnBusRD').click(function (){
         reporteGenDg()
+    });
+    $('#printRD').click(function (){
+        
     });
 }, false);
 function tabla(tabla){//Proporciona estilos a las tablas
@@ -90,17 +93,26 @@ function DiaxFechas(t){
 function reporteGenDg(){
 fi=$('#fecIniD').val()
 ff=$('#fecFinD').val()
-di=$('#diagnostico').val()
     if(fi!='Seleccionar'){
         if(ff.length>9){
             if(ff<fi){
                 alertify.error('La fecha final no puede ser antes de la fecha inicial')
             }else{
-                if(di!='Seleccionar'){
-                    
-                }else{
-                    alertify.error('Indique un diagnostico')
-                }                
+               $.ajax({
+                url: 'ReporteDiagnosticoF',
+                type: 'GET',
+                data: {
+                    fi: fi,
+                    ff:ff
+                }, 
+                success: function (r){
+                    $('#reporteDiagnostico').empty().html(r)
+                    tabla('reporteD')
+                }, 
+                error: function(){
+                    alertify.error('Ocurrio un error')
+                }
+               });
             }
         }else{
             alertify.error('Indique una fecha de fin')

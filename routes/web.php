@@ -88,4 +88,5 @@ Route::group(['middleware' => 'auth'], function () {
     route::get('ReporteDiaFecha','reporteController@ReporteDF');
     route::get('ReporteDiaFechaG/{fechaI}/{fechaF}/{tipo}','reporteController@ReporteDFF');
     route::get('ReporteDiagnostico','reporteController@ReporteDiagnostico');
+    route::get('ReporteDiagnosticoF','reporteController@genRerporteDiagnostico');
 });

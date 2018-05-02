@@ -30,19 +30,6 @@
                 <div class="col-sm-2">
                   <input type="date" class="form-control input-sm" id="fecFinD">
                 </div>
-                <label class="control-label col-sm-1">Diagnostico:</label>
-                <div class="col-sm-3"
-                >
-                  <select name="diagnostico" id="diagnostico" class="form-control input-sm select2">
-                    <option value="Seleccionar">Seleccionar</option>           
-                    <?php 
-                      $cie=DB::table('cie')->where('cod_cat','like','%h%')->get();
-                     ?>
-                    @foreach ($cie as $t)
-                      <option value="{{$t->desc_enf}}">{{$t->desc_enf}}</option>
-                    @endforeach
-                  </select>
-                </div>
                 <a class="btn btn-success btn-sm" id="btnBusRD">Generar</a>
               </div>
             </form>
