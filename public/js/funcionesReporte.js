@@ -20,7 +20,21 @@ window.addEventListener('load', function(){
         reporteGenDg()
     });
     $('#printRD').click(function (){
-        
+       fi=$('#fecIniD').val()
+       ff=$('#fecFinD').val()
+       if(fi.length>9){
+            if(ff.length>9){
+                if(ff<fi){
+                    alertify.error('La fecha final no puede ser antes de la inicial')
+                }else{
+                    window.open('printRPD/'+fi+'/'+ff,'_blank')
+                }
+            }else{
+                alertify.error('Tiene que indicar una fecha de fin')
+            }
+       }else{
+        alertify.error('Tiene que indicar una fecha de Inicio')
+       }
     });
 }, false);
 function tabla(tabla){//Proporciona estilos a las tablas
