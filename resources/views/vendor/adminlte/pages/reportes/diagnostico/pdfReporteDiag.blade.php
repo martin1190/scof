@@ -39,7 +39,7 @@
   <div class="content">
     <table border="1" style="margin: 0 auto; border-collapse: collapse; width: 100%;">
       <thead>
-        <tr style="background-color: #3E9AF9; color: white;">
+        <tr style="background-color: #3E9AF9; color: white; font-size: 12px;">
           <th style="width: 2%;">N°</th>
           <th style="width: 3%;">N°H</th>
           <th style="width: 2%;">N°C</th>
