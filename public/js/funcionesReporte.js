@@ -121,4 +121,3 @@ ff=$('#fecFinD').val()
         alertify.error('Indique una fecha de inicio')
     }
 }
-

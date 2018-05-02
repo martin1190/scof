@@ -87,4 +87,14 @@ class reporteController extends Controller
             return Response()->json(['mensaje'=>'No se recibieron datos']);
         }
     }
+    //Generar el archivo PDF de la consulta generadad
+    public function printReportediagnosticoR($feI,$feF){
+            $ddg=DB::select('select p.id, c.nconsulta, p.nombre, pm.planmedico, dp.fechacon, d.diagnostico, d.cie from paciente p, consulta c, planmedico pm, datoprevio dp, diagnostico d
+                where p.id=c.paciente_id and  c.id=pm.consulta_id and c.id=dp.consulta_id and c.id=d.consulta_id and
+                dp.fechacon between :fi and :ff order by c.id asc ',['fi'=>$feI,'ff'=>$feF]);
+            $vista=view('vendor.adminlte.pages.reportes.pdfReporteDiag', compact('li','fi','ff','ti'));
+            $pdf=\App::make('dompdf.wrapper');                
+            $pdf->loadHTML($vista);        
+            return $pdf->stream('Reporte por fechas');
+    }
 }
