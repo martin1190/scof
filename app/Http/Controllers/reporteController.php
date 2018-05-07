@@ -101,10 +101,20 @@ class reporteController extends Controller
     public function ResumenDiag(Request $request){
         if($request->ajax()){
             $f=DB::select('select d.diagnostico, count(d.diagnostico) as cantidad from diagnostico d, datoprevio dp, consulta c
-where c.id=d.consulta_id and c.id=dp.consulta_id and dp.fechacon between :fi and :ff group by diagnostico',['fi'=>$request->fi,'ff'=>$request->ff]);
+                where c.id=d.consulta_id and c.id=dp.consulta_id and dp.fechacon between :fi and :ff group by diagnostico',['fi'=>$request->fi,'ff'=>$request->ff]);
             return view('vendor.adminlte.pages.reportes.diagnostico.listaRdiagnostico',compact('f'));
         }else{
             return Response()->json(['mensaje'=>'No se recibieron datos']);
         }
+    }
+    //Reporte para genernar los diagnosticos mas frecuentes
+    public function DiagFrecuente(Request $request){
+        if($request->ajax()){
+            $f=DB::select('select d.diagnostico, count(d.diagnostico) as cantidad from diagnostico d, datoprevio dp, consulta c
+                where c.id=d.consulta_id and c.id=dp.consulta_id and dp.fechacon between :fi and :ff group by diagnostico order by cantidad desc limit 0,10',['fi'=>$request->fi,'ff'=>$request->ff]);
+            return view('vendor.adminlte.pages.reportes.diagnostico.listaRdiagnostico',compact('f'));
+        }else{
+            return Response()->json(['mensaje'=>'No se recibieron datos']);
+        }        
     }
 }

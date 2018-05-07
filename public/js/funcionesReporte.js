@@ -25,7 +25,7 @@ window.addEventListener('load', function(){
         $('#tpR').val('2')
     });
     $('#btnBusFre').click(function (){
-        reporteGenDg()
+        reporteFrecuente()
         $('#tpR').val('3')
     });        
     $('#printRD').click(function (){
@@ -200,6 +200,38 @@ function reporteResFeD(){
                 success: function (r){
                     $('#reporteDiagnostico').empty().html(r)
                     tabla('resumenDiag')
+                }, 
+                error: function(){
+                    alertify.error('Ocurrio un error')
+                }
+               });
+            }
+        }else{
+            alertify.error('Indique una fecha de fin')
+        }
+    }else{
+        alertify.error('Indique una fecha de inicio')
+    }    
+}
+//reporte con los diagnosticos mas frecuentes
+function reporteFrecuente(){
+    fi=$('#fecIniDF').val()
+    ff=$('#fecFinDF').val()
+    if(fi.length>9){
+        if(ff.length>9){
+            if(ff<fi){
+                alertify.error('La fecha final no puede ser antes de la fecha inicial')
+            }else{
+               $.ajax({
+                url: 'DiagnosticoFrecuente',
+                type: 'GET',
+                data: {
+                    fi: fi,
+                    ff:ff
+                }, 
+                success: function (r){
+                    $('#reporteDiagnostico').empty().html(r)
+                    tabla('DiagFrecuente')
                 }, 
                 error: function(){
                     alertify.error('Ocurrio un error')
