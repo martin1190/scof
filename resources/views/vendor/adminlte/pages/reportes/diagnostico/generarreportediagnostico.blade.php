@@ -64,13 +64,13 @@
                 <div class="form-group">
                   <label class="col-sm-1">Desde:</label>
                   <div class="col-sm-2">
-                    <input type="date" class="form-control input-sm" id="fecIniD">
+                    <input type="date" class="form-control input-sm" id="fecIniDR">
                   </div>
                   <label class="control-label col-sm-1">Hasta:</label>
                   <div class="col-sm-2">
-                    <input type="date" class="form-control input-sm" id="fecFinD">
+                    <input type="date" class="form-control input-sm" id="fecFinDR">
                   </div>
-                  <a class="btn btn-success btn-sm" id="btnBusRD">Generar</a>
+                  <a class="btn btn-success btn-sm" id="btnBusRDF">Generar</a>
                 </div>
               </form>                  
             </div>
@@ -82,7 +82,7 @@
         <div class="col-md-12">
           <div class="box box-default collapsed-box box-solid">
             <div class="box-header with-border">
-              <h3 class="box-title">Resumen de dignosticos mas frecuentes</h3>
+              <h3 class="box-title">Diagnosticos mas frecuentes</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
@@ -96,13 +96,13 @@
                 <div class="form-group">
                   <label class="col-sm-1">Desde:</label>
                   <div class="col-sm-2">
-                    <input type="date" class="form-control input-sm" id="fecIniD">
+                    <input type="date" class="form-control input-sm" id="fecIniDF">
                   </div>
                   <label class="control-label col-sm-1">Hasta:</label>
                   <div class="col-sm-2">
-                    <input type="date" class="form-control input-sm" id="fecFinD">
+                    <input type="date" class="form-control input-sm" id="fecFinDF">
                   </div>
-                  <a class="btn btn-success btn-sm" id="btnBusRD">Generar</a>
+                  <a class="btn btn-success btn-sm" id="btnBusFre">Generar</a>
                 </div>
               </form>                  
             </div>
@@ -113,6 +113,7 @@
       </div>
       <div class="row">
         <a href="#" class="btn btn-info" id="printRD"><i class="fa fa-print">Imprimir</i></a>
+        <input type="text" id="tpR">
       </div>
       <div id="reporteDiagnostico">
         

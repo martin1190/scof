@@ -18,23 +18,67 @@ window.addEventListener('load', function(){
     //Para los reportes de diagnostico
     $('#btnBusRD').click(function (){
         reporteGenDg()
+        $('#tpR').val('1')
     });
+    $('#btnBusRDF').click(function (){
+        reporteResFeD()
+        $('#tpR').val('2')
+    });
+    $('#btnBusFre').click(function (){
+        reporteGenDg()
+        $('#tpR').val('3')
+    });        
     $('#printRD').click(function (){
-       fi=$('#fecIniD').val()
-       ff=$('#fecFinD').val()
-       if(fi.length>9){
-            if(ff.length>9){
-                if(ff<fi){
-                    alertify.error('La fecha final no puede ser antes de la inicial')
+        t=$('#tpR').val()
+        if(t==1){
+           fi=$('#fecIniD').val()
+           ff=$('#fecFinD').val()
+           if(fi.length>9){
+                if(ff.length>9){
+                    if(ff<fi){
+                        alertify.error('La fecha final no puede ser antes de la inicial')
+                    }else{
+                        window.open('printRPD/'+fi+'/'+ff,'_blank')
+                    }
                 }else{
-                    window.open('printRPD/'+fi+'/'+ff,'_blank')
+                    alertify.error('Tiene que indicar una fecha de fin')
                 }
-            }else{
-                alertify.error('Tiene que indicar una fecha de fin')
-            }
-       }else{
-        alertify.error('Tiene que indicar una fecha de Inicio')
-       }
+           }else{
+            alertify.error('Tiene que indicar una fecha de Inicio')
+           }            
+        }else if(t==2){
+           fi=$('#fecIniDR').val()
+           ff=$('#fecFinDR').val()
+           if(fi.length>9){
+                if(ff.length>9){
+                    if(ff<fi){
+                        alertify.error('La fecha final no puede ser antes de la inicial')
+                    }else{
+                        window.open('printRPD/'+fi+'/'+ff,'_blank')
+                    }
+                }else{
+                    alertify.error('Tiene que indicar una fecha de fin')
+                }
+           }else{
+            alertify.error('Tiene que indicar una fecha de Inicio')
+           }
+        }else if(t==3){
+           fi=$('#fecIniDF').val()
+           ff=$('#fecFinDF').val()
+           if(fi.length>9){
+                if(ff.length>9){
+                    if(ff<fi){
+                        alertify.error('La fecha final no puede ser antes de la inicial')
+                    }else{
+                        window.open('printRPD/'+fi+'/'+ff,'_blank')
+                    }
+                }else{
+                    alertify.error('Tiene que indicar una fecha de fin')
+                }
+           }else{
+            alertify.error('Tiene que indicar una fecha de Inicio')
+           }
+        }
     });
 }, false);
 function tabla(tabla){//Proporciona estilos a las tablas
@@ -104,10 +148,12 @@ function DiaxFechas(t){
     }
 }
 // Funciones para generar reporte de diagnisticos
+
+//Report resumen por fechas
 function reporteGenDg(){
 fi=$('#fecIniD').val()
 ff=$('#fecFinD').val()
-    if(fi!='Seleccionar'){
+    if(fi.length>9){
         if(ff.length>9){
             if(ff<fi){
                 alertify.error('La fecha final no puede ser antes de la fecha inicial')
@@ -134,4 +180,36 @@ ff=$('#fecFinD').val()
     }else{
         alertify.error('Indique una fecha de inicio')
     }
+}
+//Reporte resumen de diagnosticos por fechas
+function reporteResFeD(){
+    fi=$('#fecIniDR').val()
+    ff=$('#fecFinDR').val()
+    if(fi.length>9){
+        if(ff.length>9){
+            if(ff<fi){
+                alertify.error('La fecha final no puede ser antes de la fecha inicial')
+            }else{
+               $.ajax({
+                url: 'ResumenDiag',
+                type: 'GET',
+                data: {
+                    fi: fi,
+                    ff:ff
+                }, 
+                success: function (r){
+                    $('#reporteDiagnostico').empty().html(r)
+                    tabla('resumenDiag')
+                }, 
+                error: function(){
+                    alertify.error('Ocurrio un error')
+                }
+               });
+            }
+        }else{
+            alertify.error('Indique una fecha de fin')
+        }
+    }else{
+        alertify.error('Indique una fecha de inicio')
+    }    
 }

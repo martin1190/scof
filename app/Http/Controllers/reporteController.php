@@ -89,12 +89,22 @@ class reporteController extends Controller
     }
     //Generar el archivo PDF de la consulta generadad
     public function printReportediagnosticoR($feI,$feF){
-            $ddg=DB::select('select p.id, c.nconsulta, p.nombre, pm.planmedico, dp.fechacon, d.diagnostico, d.cie from paciente p, consulta c, planmedico pm, datoprevio dp, diagnostico d
+        $ddg=DB::select('select p.id, c.nconsulta, p.nombre, pm.planmedico, dp.fechacon, d.diagnostico, d.cie from paciente p, consulta c, planmedico pm, datoprevio dp, diagnostico d
                 where p.id=c.paciente_id and  c.id=pm.consulta_id and c.id=dp.consulta_id and c.id=d.consulta_id and
                 dp.fechacon between :fi and :ff order by c.id asc ',['fi'=>$feI,'ff'=>$feF]);
-            $vista=view('vendor.adminlte.pages.reportes.diagnostico.pdfReporteDiag', compact('ddg'));
-            $pdf=\App::make('dompdf.wrapper');                
-            $pdf->loadHTML($vista);        
-            return $pdf->stream('Resumen de diagnosticos');
+        $vista=view('vendor.adminlte.pages.reportes.diagnostico.pdfReporteDiag', compact('ddg'));
+        $pdf=\App::make('dompdf.wrapper');
+        $pdf->loadHTML($vista);        
+        return $pdf->stream('Resumen de diagnosticos');
+    }
+    ///reporte para generar el resumen de diagnosticos
+    public function ResumenDiag(Request $request){
+        if($request->ajax()){
+            $f=DB::select('select d.diagnostico, count(d.diagnostico) as cantidad from diagnostico d, datoprevio dp, consulta c
+where c.id=d.consulta_id and c.id=dp.consulta_id and dp.fechacon between :fi and :ff group by diagnostico',['fi'=>$request->fi,'ff'=>$request->ff]);
+            return view('vendor.adminlte.pages.reportes.diagnostico.listaRdiagnostico',compact('f'));
+        }else{
+            return Response()->json(['mensaje'=>'No se recibieron datos']);
+        }
     }
 }

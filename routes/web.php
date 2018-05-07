@@ -90,4 +90,5 @@ Route::group(['middleware' => 'auth'], function () {
     route::get('ReporteDiagnostico','reporteController@ReporteDiagnostico');
     route::get('ReporteDiagnosticoF','reporteController@genRerporteDiagnostico');
     route::get('printRPD/{feI}/{feF}','reporteController@printReportediagnosticoR');
+    route::get('ResumenDiag','reporteController@ResumenDiag');
 });

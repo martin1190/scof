@@ -76,6 +76,7 @@ class usuarioController extends Controller
         $usu=DB::table('persona')
                 ->join('users','persona.id','=','users.persona_id')
                 ->select('persona.*','users.username','users.id as idu','users.email','users.tipo_users_id')
+                ->whereNotIn('users.id', [4])
                 ->get();
         //return Response()->json($usu);
         return view('vendor.adminlte.pages.usuario.usuarios',compact('usu'));
