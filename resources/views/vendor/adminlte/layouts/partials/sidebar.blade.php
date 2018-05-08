@@ -61,7 +61,7 @@
                 <ul class="treeview-menu">
                     <li><a href="{{url('ParteDiario')}}">Parte Diario</a></li>
                     <li><a href="{{url('ReporteDiagnostico')}}">Por Diagnosticos</a></li>
-                    <li><a href="{{url('Costos')}}">Por Procedimientos</a></li>
+                    <li><a href="{{url('ReporteProcedimiento')}}">Por Procedimientos</a></li>
                     <li><a href="{{url('ReporteEdad')}}">Por Edades</a></li>
                 </ul>
             </li>  

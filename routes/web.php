@@ -94,4 +94,6 @@ Route::group(['middleware' => 'auth'], function () {
     route::get('DiagnosticoFrecuente','reporteController@DiagFrecuente');
     route::get('ResumenDiagPDF/{fecI}/{fecF}','reporteController@pdfresumend');
     route::get('PDFrecuente/{fi}/{ff}','reporteController@pdfFrecuente');
+    route::get('ReporteProcedimiento','reporteController@procedimiento');
+    route::get('ReporteEdad','reporteController@reporteEdad');
 });

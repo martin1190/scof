@@ -247,3 +247,6 @@ function reporteFrecuente(){
         alertify.error('Indique una fecha de inicio')
     }    
 }
+
+//Funciones para generar los reportes por procedimientos
+

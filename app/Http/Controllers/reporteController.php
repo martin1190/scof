@@ -135,4 +135,16 @@ class reporteController extends Controller
         $pdf->loadHTML($vista);        
         return $pdf->stream('Diagnosticos mas frecuentes');            
     }
+
+    //Funciones para generar reportes de procedimientos
+    public function procedimiento(){
+        return view('vendor.adminlte.pages.reportes.procedimiento.procedimiento');
+    }
+    
+
+
+    //Funciones para generar reportes por rango de edades
+    public function reporteEdad(){
+        return view('vendor.adminlte.pages.reportes.edad.reportedad');
+    }
 }
