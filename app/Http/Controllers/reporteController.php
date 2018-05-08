@@ -117,4 +117,22 @@ class reporteController extends Controller
             return Response()->json(['mensaje'=>'No se recibieron datos']);
         }        
     }
+    //Generar reporte pdf para el resumen de diagnosticos
+    public function pdfresumend($fi,$ff){
+        $f=DB::select('select d.diagnostico, count(d.diagnostico) as cantidad from diagnostico d, datoprevio dp, consulta c
+            where c.id=d.consulta_id and c.id=dp.consulta_id and dp.fechacon between :fi and :ff group by diagnostico',['fi'=>$fi,'ff'=>$ff]);
+        $vista=view('vendor.adminlte.pages.reportes.diagnostico.pdfRDiagnostico',compact('f'));
+        $pdf=\App::make('dompdf.wrapper');
+        $pdf->loadHTML($vista);        
+        return $pdf->stream('Resumen de diagnosticos');        
+    }
+    //Generar reporte pdf para los diagnosticos mas frecuentes
+    public function pdfFrecuente($fi,$ff){
+        $f=DB::select('select d.diagnostico, count(d.diagnostico) as cantidad from diagnostico d, datoprevio dp, consulta c
+            where c.id=d.consulta_id and c.id=dp.consulta_id and dp.fechacon between :fi and :ff group by diagnostico order by cantidad desc limit 0,10',['fi'=>$fi,'ff'=>$ff]);
+        $vista=view('vendor.adminlte.pages.reportes.diagnostico.pdfFrecuente',compact('f'));
+        $pdf=\App::make('dompdf.wrapper');
+        $pdf->loadHTML($vista);        
+        return $pdf->stream('Diagnosticos mas frecuentes');            
+    }
 }

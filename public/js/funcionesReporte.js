@@ -54,7 +54,7 @@ window.addEventListener('load', function(){
                     if(ff<fi){
                         alertify.error('La fecha final no puede ser antes de la inicial')
                     }else{
-                        window.open('printRPD/'+fi+'/'+ff,'_blank')
+                        window.open('ResumenDiagPDF/'+fi+'/'+ff,'_blank')
                     }
                 }else{
                     alertify.error('Tiene que indicar una fecha de fin')
@@ -70,7 +70,7 @@ window.addEventListener('load', function(){
                     if(ff<fi){
                         alertify.error('La fecha final no puede ser antes de la inicial')
                     }else{
-                        window.open('printRPD/'+fi+'/'+ff,'_blank')
+                        window.open('PDFrecuente/'+fi+'/'+ff,'_blank')
                     }
                 }else{
                     alertify.error('Tiene que indicar una fecha de fin')
@@ -78,6 +78,8 @@ window.addEventListener('load', function(){
            }else{
             alertify.error('Tiene que indicar una fecha de Inicio')
            }
+        }else{
+            alertify.error('Primero indique los parametros de busqueda')
         }
     });
 }, false);

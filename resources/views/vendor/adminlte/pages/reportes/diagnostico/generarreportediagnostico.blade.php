@@ -113,7 +113,7 @@
       </div>
       <div class="row">
         <a href="#" class="btn btn-info" id="printRD"><i class="fa fa-print">Imprimir</i></a>
-        <input type="text" id="tpR">
+        <input type="hidden" id="tpR">
       </div>
       <div id="reporteDiagnostico">
         
