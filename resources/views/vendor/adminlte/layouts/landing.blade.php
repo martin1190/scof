@@ -23,7 +23,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
     <meta name="twitter:site" content="@acachawiki" />
     <meta name="twitter:creator" content="@acacha1" />
 
-    <title>{{ trans('adminlte_lang::message.landingdescriptionpratt') }}</title>
+    <title>Clinica Oftalmologica Bernardo Gamarra</title>
 
     <!-- Custom styles for this template -->
     <link href="{{ asset('/css/all-landing.css') }}" rel="stylesheet">
