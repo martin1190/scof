@@ -96,4 +96,11 @@ Route::group(['middleware' => 'auth'], function () {
     route::get('PDFrecuente/{fi}/{ff}','reporteController@pdfFrecuente');
     route::get('ReporteProcedimiento','reporteController@procedimiento');
     route::get('ReporteEdad','reporteController@reporteEdad');
+    route::get('ProcedimientoGeneral','reporteController@resumenprocedimiento');
+    route::get('ProcedimientoCantidad','reporteController@cantidadProcedimiento');
+    route::get('PDFProcedimiento/{fi}/{ff} ','reporteController@PDFResumenPro');
+    route::get('PDFProcedimientoCantidad/{fi}/{ff}','reporteController@PDFResumenCantidadPr');
+    route::get('ReporteGeneralEdad','reporteController@detalleEdades');
+    route::get('DiagnosticoEdades','reporteController@diagnosticoedades');
+    route::get('DiagnosticoEdadesDetalle','reporteController@diagnosticoEdadedetalle');
 });

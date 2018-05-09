@@ -13,20 +13,26 @@ window.addEventListener('load', function(){
     });
     $('#btnBus').click(function(){
         ts=$('#tipo').val()        
-        DiaxFechas(ts)        
+        DiaxFechas(ts)            
     });
     //Para los reportes de diagnostico
     $('#btnBusRD').click(function (){
         reporteGenDg()
         $('#tpR').val('1')
+        $('#frmDiagRCa')[0].reset()
+        $('#frmFrec')[0].reset()
     });
     $('#btnBusRDF').click(function (){
         reporteResFeD()
         $('#tpR').val('2')
+        $('#frmDiagR')[0].reset() 
+        $('#frmFrec')[0].reset()
     });
     $('#btnBusFre').click(function (){
         reporteFrecuente()
-        $('#tpR').val('3')
+        $('#tpR').val('3')        
+        $('#frmDiagRCa')[0].reset() 
+        $('#frmDiagR')[0].reset() 
     });        
     $('#printRD').click(function (){
         t=$('#tpR').val()
@@ -82,6 +88,61 @@ window.addEventListener('load', function(){
             alertify.error('Primero indique los parametros de busqueda')
         }
     });
+    //Para el reporte de procedimiento
+    $('#btnBusRP').click( function (){
+        ResumenProcedimiento()
+        $('#tpP').val('1')
+        $('#frmProCan')[0].reset()
+    });
+    $('#btnBusPr').click(function (){
+        procedimientoFechas()
+        $('#tpP').val('2')
+        $('#frmProcRes')[0].reset()
+    });
+    //Generar el PDF del reporte por procedimiento
+    $('#printRP').click(function(){
+        t=$('#tpP').val()
+        if(t==1){
+           fi=$('#fecIniP').val()
+           ff=$('#fecFinP').val()
+           if(fi.length>9){
+                if(ff.length>9){
+                    if(ff<fi){
+                        alertify.error('La fecha final no puede ser antes de la inicial')
+                    }else{
+                        window.open('PDFProcedimiento/'+fi+'/'+ff,'_blank')
+                    }
+                }else{
+                    alertify.error('Tiene que indicar una fecha de fin')
+                }
+           }else{
+            alertify.error('Tiene que indicar una fecha de Inicio')
+           }
+        }else if(t==2){
+           fi=$('#fecIniPR').val()
+           ff=$('#fecFinPR').val()
+           if(fi.length>9){
+                if(ff.length>9){
+                    if(ff<fi){
+                        alertify.error('La fecha final no puede ser antes de la inicial')
+                    }else{
+                        window.open('PDFProcedimientoCantidad/'+fi+'/'+ff,'_blank')
+                    }
+                }else{
+                    alertify.error('Tiene que indicar una fecha de fin')
+                }
+           }else{
+            alertify.error('Tiene que indicar una fecha de Inicio')
+           }
+        }else{
+            alertify.error('Primero indique los parametros de busqueda')            
+        }
+    });
+//Para las funciones de reporte por edades
+    $('#btnEdadDe').click(function (){        
+        EdadesDetalle()
+    });
+
 }, false);
 function tabla(tabla){//Proporciona estilos a las tablas
     $('#'+tabla).dataTable({
@@ -250,3 +311,205 @@ function reporteFrecuente(){
 
 //Funciones para generar los reportes por procedimientos
 
+//Generar el reporte general de procedimientos
+function ResumenProcedimiento(){
+    fi=$('#fecIniP').val()
+    ff=$('#fecFinP').val()
+    if(fi.length>9){
+        if(ff.length>9){
+            if(ff<fi){
+                alertify.error('La fecha final no puede ser antes de la fecha inicial')
+            }else{
+               $.ajax({
+                url: 'ProcedimientoGeneral',
+                type: 'GET',
+                data: {
+                    fi: fi,
+                    ff:ff
+                }, 
+                success: function (r){
+                    $('#reporteProcedimiento').empty().html(r)
+                    tabla('resumenPro')
+                }, 
+                error: function(){
+                    alertify.error('Ocurrio un error')
+                }
+               });
+            }
+        }else{
+            alertify.error('Indique una fecha de fin')
+        }
+    }else{
+        alertify.error('Indique una fecha de inicio')
+    }  
+}
+
+//Generar reporte resumen por fechas
+function procedimientoFechas(){
+    fi=$('#fecIniPR').val()
+    ff=$('#fecFinPR').val()
+    if(fi.length>9){
+        if(ff.length>9){
+            if(ff<fi){
+                alertify.error('La fecha final no puede ser antes de la fecha inicial')
+            }else{
+               $.ajax({
+                url: 'ProcedimientoCantidad',
+                type: 'GET',
+                data: {
+                    fi: fi,
+                    ff:ff
+                }, 
+                success: function (r){
+                    $('#reporteProcedimiento').empty().html(r)
+                    tabla('resumenPro')
+                }, 
+                error: function(){
+                    alertify.error('Ocurrio un error')
+                }
+               });
+            }
+        }else{
+            alertify.error('Indique una fecha de fin')
+        }
+    }else{
+        alertify.error('Indique una fecha de inicio')
+    }  
+}
+
+//Funciones para generar reportes por edaes
+
+//Funcion para el primero reporte de detalle por edades
+
+function EdadesDetalle(){
+    fi=$('#fecIniED').val()
+    ff=$('#fecFinED').val()
+    ei=""
+    ef=""
+    r=$('#EdadesDet').val()
+    switch(r){
+        case '1':
+            ei=-1
+            ef=6
+            break;
+        case '2':
+            ei="6"
+            ef="10"
+            break;
+        case '3':
+            ei="11"
+            ef="15"
+            break;
+        case '4':
+            ei="16"
+            ef="20"
+            break;
+        case '5':
+            ei="21"
+            ef="25"
+            break;
+        case '6':
+            ei="26"
+            ef="30"
+            break;
+        case '7':
+            ei="31"
+            ef="35"
+            break;
+        case '8':
+            ei="36"
+            ef="40"
+            break;
+        case '9':
+            ei="41"
+            ef="45"
+            break;
+        case '10':
+            ei="46"
+            ef="50"
+            break;
+        case '11':
+            ei="51"
+            ef="55"
+            break;
+        case '12':
+            ei="56"
+            ef="60"
+            break;
+        case '13':
+            ei="61"
+            ef="65"
+            break;
+        case '14':
+            ei="66"
+            ef='70'
+            break;
+        case '15':
+            ei="71"
+            ef="75"
+            break;
+        case '16':
+            ei="76"
+            ef="80"
+            break;
+        case '17':
+            ei="81"
+            ef="85"
+            break;
+        case '18':
+            ei="86"
+            ef="90"
+            break;
+        case '19':
+            ei="91"
+            ef="300"
+            break;
+        case 'Seleccionar':
+            ei="Seleccionar"      
+            break;             
+    }           
+    if(fi.length>9){
+        if(ff.length>9){
+            if(ff<fi){
+                alertify.error('La fecha final no puede ser antes de la fecha inicial')
+            }else{
+                if(ei!='Seleccionar'){
+                   $.ajax({
+                    url: 'ReporteGeneralEdad',
+                    type: 'GET',
+                    data: {
+                        fi: fi,
+                        ff:ff,
+                        ei: ei,
+                        ef: ef
+                    }, 
+                    success: function (r){
+                        $('#reporteEdades').empty().html(r)
+                        tabla('resumenedades')
+                        console.log(ei)
+                        console.log(ef)
+                    }, 
+                    error: function(){
+                        alertify.error('Ocurrio un error')
+                    }
+                   });
+                }else{
+                    alertify.error('Tiene que indicar un rango de edad')
+                }
+            }
+        }else{
+            alertify.error('Indique una fecha de fin')
+        }
+    }else{
+        alertify.error('Indique una fecha de inicio')
+    }      
+}
+
+//Funcion para genear el reporte de diagnostico por edades
+function DiagnosticoEdades(){
+
+}
+//Funciones para generar el reporte por diagnosticos por edades detallado
+function DiagnosticoEdadesDetalle(){
+
+}

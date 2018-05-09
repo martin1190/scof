@@ -37,12 +37,13 @@
   </div>
   <br>
   <div class="content">
-    <p>Diagnosticos mas frecuentes desde : <strong>{{$fi}}</strong> Hasta: <strong>{{$ff}}</strong></p>
+    <p>Cantidad de procedimientos del: <strong>{{$fi}}</strong> Hasta: <strong>{{$ff}}</strong></p> 
+
     <table border="1" style="margin: 0 auto; border-collapse: collapse; width: 100%;">
       <thead>
         <tr style="background-color: #3E9AF9; color: white; font-size: 12px;">
           <th style="width: 2%;">N°</th>         
-          <th style="width: 30%;">Diagnostico</th>
+          <th style="width: 30%;">Procedimiento</th>
           <th style="text-align: center; width: 5%;">Cantidad</th>              
         </tr>    
       </thead>
@@ -50,13 +51,13 @@
         @php
           $nn=0;
         @endphp
-        @foreach ($f as $d)
+        @foreach ($r as $d)
           @php
           $nn++;
           @endphp
           <tr style="font-size: 10px;">
             <td style="text-align: center;">{{$nn}}</td>
-            <td>{{$d->diagnostico}}</td>
+            <td>{{$d->procedimiento}}</td>
             <td style="text-align: center;">{{$d->cantidad}}</td>
           </tr>
         @endforeach

@@ -28,17 +28,17 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">                  
-              <form  id="frmDiario">
+              <form  id="frmProcRes">
                 <div class="form-group">
                   <label class="col-sm-1">Desde:</label>
                   <div class="col-sm-2">
-                    <input type="date" class="form-control input-sm" id="fecIniD">
+                    <input type="date" class="form-control input-sm" id="fecIniP">
                   </div>
                   <label class="control-label col-sm-1">Hasta:</label>
                   <div class="col-sm-2">
-                    <input type="date" class="form-control input-sm" id="fecFinD">
+                    <input type="date" class="form-control input-sm" id="fecFinP">
                   </div>
-                  <a class="btn btn-success btn-sm" id="btnBusRD">Generar</a>
+                  <a class="btn btn-success btn-sm" id="btnBusRP">Generar</a>
                 </div>
               </form>                  
             </div>
@@ -60,17 +60,17 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">                  
-              <form  id="frmDiario">
+              <form  id="frmProCan">
                 <div class="form-group">
                   <label class="col-sm-1">Desde:</label>
                   <div class="col-sm-2">
-                    <input type="date" class="form-control input-sm" id="fecIniDR">
+                    <input type="date" class="form-control input-sm" id="fecIniPR">
                   </div>
                   <label class="control-label col-sm-1">Hasta:</label>
                   <div class="col-sm-2">
-                    <input type="date" class="form-control input-sm" id="fecFinDR">
+                    <input type="date" class="form-control input-sm" id="fecFinPR">
                   </div>
-                  <a class="btn btn-success btn-sm" id="btnBusRDF">Generar</a>
+                  <a class="btn btn-success btn-sm" id="btnBusPr">Generar</a>
                 </div>
               </form>                  
             </div>
@@ -82,8 +82,8 @@
                 
       </div>
       <div class="row">
-        <a href="#" class="btn btn-info" id="printRD"><i class="fa fa-print">Imprimir</i></a>
-        <input type="hidden" id="tpR">
+        <a href="#" class="btn btn-info" id="printRP"><i class="fa fa-print">Imprimir</i></a>
+        <input type="hidden" id="tpP">
       </div>
       <div id="reporteProcedimiento">
         

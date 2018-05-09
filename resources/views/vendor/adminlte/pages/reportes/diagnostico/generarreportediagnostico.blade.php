@@ -28,7 +28,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">                  
-              <form  id="frmDiario">
+              <form  id="frmDiagR">
                 <div class="form-group">
                   <label class="col-sm-1">Desde:</label>
                   <div class="col-sm-2">
@@ -60,7 +60,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">                  
-              <form  id="frmDiario">
+              <form  id="frmDiagRCa">
                 <div class="form-group">
                   <label class="col-sm-1">Desde:</label>
                   <div class="col-sm-2">
@@ -92,7 +92,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">                  
-              <form  id="frmDiario">
+              <form  id="frmFrec">
                 <div class="form-group">
                   <label class="col-sm-1">Desde:</label>
                   <div class="col-sm-2">

@@ -37,6 +37,7 @@
   </div>
   <br>
   <div class="content">
+    <p>Resumen general de diagnosticos del: <strong>{{$feI}}</strong> Hasta: <strong>{{$feF}}</strong></p>    
     <table border="1" style="margin: 0 auto; border-collapse: collapse; width: 100%;">
       <thead>
         <tr style="background-color: #3E9AF9; color: white; font-size: 12px;">

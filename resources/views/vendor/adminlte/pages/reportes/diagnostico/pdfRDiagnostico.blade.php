@@ -37,6 +37,7 @@
   </div>
   <br>
   <div class="content">
+    <p>Reporte de diagnosticos desde: <strong>{{$fi}}</strong> Hasta: <strong>{{$ff}}</strong></p>    
     <table border="1" style="margin: 0 auto; border-collapse: collapse; width: 100%;">
       <thead>
         <tr style="background-color: #3E9AF9; color: white; font-size: 12px;">
