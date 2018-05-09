@@ -282,10 +282,10 @@ class pacienteController extends Controller
             $nombre=$request->nombre." ";
             $edad = Carbon::createFromDate($an,$mes,$dia)->age;            
             $actualizar=DB::table('paciente')->where('id',$id)->update(['nombre'=>$nombre,'dni'=>$request->dni,'direccion'=>$request->direccion,'fecnac'=>$request->fecnac,'sexo'=>$request->sexo,'telefono'=>$request->telefono,'edad'=>$edad,'email'=>$request->email,'parentesco'=>$request->parentesco,'tipo_seguro_id'=> $request->tiposer]);
-            if($actualizar){//Si el campo que envia es de tipo RIMAC
+            if($actualizar){//si se ejecuta la actualizacion
                 $verReg=DB::table('compania_paciente')->where('id_paciente',$id)->count();
                 if($request->tiposer!="1"){//Verifica el tipo de servicio
-                    if($verReg==0){//Se realiza el registro
+                    if($verReg==0){//
                         $regCom=new compania_paciente;
                         $regCom->id_paciente=$id;
                         $regCom->id_compania=$request->compania;
@@ -318,7 +318,40 @@ class pacienteController extends Controller
                     }                    
                 }                
             }else{
-                echo "No se realizaron cambios";                
+                $verReg=DB::table('compania_paciente')->where('id_paciente',$id)->count();
+                if($request->tiposer!="1"){//Verifica el tipo de servicio
+                    if($verReg==0){//
+                        $regCom=new compania_paciente;
+                        $regCom->id_paciente=$id;
+                        $regCom->id_compania=$request->compania;
+                        $regCom->save();
+                        if($regCom){
+                            echo "Datos Actualizados";
+                        }else{
+                            echo "Ocurrio un error registrando la compania";
+                        }
+                    }elseif($verReg==1){//Se reaiiza la actualizacion
+                        $actualizarComp=DB::table('compania_paciente')
+                        ->where('id_paciente',$id)
+                        ->update(['id_compania'=>$request->compania]);
+                        if($actualizarComp){
+                            echo "Datos Actualizados";
+                        }else{
+                            echo "No se pudo actualizar la compania";
+                        }                        
+                    }
+                }else{
+                    if($verReg==0){
+                        echo "Datos Actualizados";
+                    }elseif($verReg==1){                        
+                        $eliCo=DB::table('compania_paciente')->where('id_paciente','=',$id)->delete();
+                        if($eliCo){
+                            echo "Datos Actualizados";
+                        }else{
+                            echo "Ocurrio un error eliminado la compania";
+                        }
+                    }                    
+                }                  
             }
         }else{
             echo "No se recibieron Datos";

@@ -1,11 +1,11 @@
 <style>
     table{
-        background: #B7FDC9;
+        width: 850px;
     }
 </style>
-<table class="table table-striped table-bordered table-hover" id="tblD">
+<table border="1" style="margin: 0 auto;" id="tblD">
     <thead>
-        <tr>
+        <tr style="background-color: #377AE9; color: white;">
             <th>N°</th>
             <th>N°H</th>
             <th>N°C</th>
@@ -32,7 +32,7 @@
             <input type="hidden" value="{{$r->fecha}}" id="fecCo">
             <input type="hidden" value="{{$r->id}}" id="ida">
             <input type="hidden" value="{{$r->planmed}}" id="pmed">
-            <tr>
+            <tr style="background-color: white;">
                 <td>{{$no}}</td>
                 <td>{{$r->nhistoria}}</td>
                 <td>{{$r->nconsulta}}</td>
