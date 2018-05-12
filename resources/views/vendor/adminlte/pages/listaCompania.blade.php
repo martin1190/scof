@@ -14,9 +14,15 @@
         </tr>                        
     </thead>
     <tbody>
+        @php
+            $n=0;
+        @endphp
         @foreach ($lista as $r)
+            @php
+            $n++;
+            @endphp
             <tr>
-                <td></td>
+                <td>{{$n}}</td>
                 <td>{{$r->nombre}}</td>
                 <td align="center">{{$r->ruc}}</td>
                 <?php 

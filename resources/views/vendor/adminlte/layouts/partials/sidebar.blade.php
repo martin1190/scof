@@ -110,9 +110,10 @@
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>Reportes</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="{{url('Aseguradora')}}">Registro de aseguradora</a></li>
-                    <li><a href="{{url('compania')}}">Registro de Companias</a></li>
-                    <li><a href="{{url('Costos')}}">Registro de Costos</a></li>
+                    <li><a href="{{url('ParteDiario')}}">Parte Diario</a></li>
+                    <li><a href="{{url('ReporteDiagnostico')}}">Por Diagnosticos</a></li>
+                    <li><a href="{{url('ReporteProcedimiento')}}">Por Procedimientos</a></li>
+                    <li><a href="{{url('ReporteEdad')}}">Por Edades</a></li>
                 </ul>
             </li>  
             <li class="treeview">

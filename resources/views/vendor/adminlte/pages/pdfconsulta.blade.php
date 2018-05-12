@@ -338,7 +338,7 @@
 		<div class="l7">
 			<label class="titulo">Antecedentes:</label>
 			<input type="text" class="inptxt" id="antc" value="{{$d->antecedentes1}} "><br>
-			<input type="text" class="inptxt" id="antc1" value="{{$d->antecedentes1}} ">
+			<input type="text" class="inptxt" id="antc1" value="{{$d->antecedentes2}} ">
 			<label class="titulo">Plan Medico:</label>
 			<input type="text" class="inptxt" id="pmc" value="{{$d->atencion}} ">
 			<label class="titulo">Usa Lente:</label>

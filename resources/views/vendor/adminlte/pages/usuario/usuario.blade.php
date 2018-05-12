@@ -73,7 +73,9 @@
                           <select name="tipoU" id="tipoU" class="form-control input-sm">
                             <option value="Seleccionar">Seleccionar</option>
                             <?php 
-                              $tu=DB::table('tipo_users')->get();
+                              $tu=DB::table('tipo_users')
+                                          ->whereNotIn('id', [1])
+                                          ->get();
                              ?>
                              @foreach ($tu as $tu)
                               <option value="{{$tu->id}}">{{$tu->tipo}}</option>
