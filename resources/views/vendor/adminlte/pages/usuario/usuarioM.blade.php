@@ -87,15 +87,26 @@
         <div class="modal-content">
           <div class="box box-info">
               <div class="box-header with-border">
-                <h3 class="box-title">Cambiar Contraseña</h3>
+                <h3 class="box-title">Cambiar datos de Acceso</h3>
               </div>
               <div class="box-body with-border">
+                <div class="container">
+                  <form action="" id="frmusu">
+                    <label class="control-label col-sm-1">Usuario: </label>
+                    <div class="col-sm-3">
+                      <input type="text" class="form-control input-sm" id="musuario">
+                    </div>
+                    <div class="col-sm-1">
+                      <a class="btn btn-primary btn-sm" onclick="modificarContraseña(3)"><i class="fa fa-save"> Guardar</i></a>
+                    </div>
+                  </form>
+                </div>
                 <div class="container">
                   <form action="" method="post" id="frmContraseña">
                     <input type="hidden" id="idus">
                     <div class="col-sm-3">
                       <h4>Generar contraseña Automatica</h4><br>
-                      <a href="#" class="btn btn-info" onclick="modificarContraseña(1)">Generar</a>
+                      <a href="#" class="btn btn-info btn-sm" onclick="modificarContraseña(1)">Generar</a>
                       <div class="col-sm-10" style="padding-top: 10px;">
                         <input type="text" class="form-control input-sm" enabled="false" id="nuevaP">
                       </div>
@@ -118,8 +129,8 @@
                       <div class="form-group">     
                         <div class="col-sm-12" style="padding-top: 10px;">
                           <div class="pull-right">
-                            <a class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close">&nbsp;Cancelar</i></a>
-                            <a href="#" class="btn btn-success" onclick="modificarContraseña(2)"><i class="fa fa-save">&nbsp;Guardar</i></a>
+                            <a class="btn btn-danger btn-sm" data-dismiss="modal"><i class="fa fa-close">&nbsp;Cancelar</i></a>
+                            <a href="#" class="btn btn-success btn-sm" onclick="modificarContraseña(2)"><i class="fa fa-save">&nbsp;Guardar</i></a>
                           </div>                           
                         </div>         
                        

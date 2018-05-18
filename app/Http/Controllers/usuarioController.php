@@ -165,6 +165,15 @@ class usuarioController extends Controller
                     }else{
                         return Response()->json(['mensaje'=>'No se pudo actualizar']);                        
                     }              
+            }else if($request->tp==3){
+                $newUsu=DB::table('users')
+                            ->where('id',$request->idu)
+                            ->update(['username'=>$request->u]);
+                if ($newUsu) {
+                    return Response()->json(['mensaje'=>'Usuario Modificado']);
+                }else{
+                    return Response()->json(['mensaje'=>'No se pudo modificar']);
+                }
             }
         }else{
             return Response()->json(['mensaje'=>'No se recibieron datos']);

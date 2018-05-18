@@ -52,6 +52,7 @@ $('#tipoServicio').change(function(){
     $('#abtn').removeAttr('class','col-sm-1')
     $('#Rta').attr('class','col-sm-3')    
     $('#compania').attr('disabled',true)
+    $('#parentesco > option[value="Titular"]').attr('selected', 'selected');    
   }
 });
 $('#abtn').click(function (){

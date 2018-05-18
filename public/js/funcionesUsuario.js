@@ -228,10 +228,11 @@ email=$('#emailUM').val()
             }
         });
 } 
-function cargarIdC(idu){//Funcion para cargar el id de usuario para modificar la contrasñea
+function cargarIdC(idu,u){//Funcion para cargar el id de usuario para modificar la contrasñea
     $('#idus').val(idu)
     $('#ncont').val('')
     $('#rncont').val('')
+    $('#musuario').val(u)
 }
 function modificarContraseña(tp){
 token=$('#token').val()  
@@ -250,6 +251,7 @@ rcon=$('#rncont').val()
             success: function(r){
                 if(r.mensaje=="Generado"){
                     $('#nuevaP').val(r.nuevo)
+                    $('#editarC').modal('hide')
                 }else if(r.mensaje=="No se pudo actualizar"){
                     alertify.error('Ocurrio un error')
                 }
@@ -273,6 +275,7 @@ rcon=$('#rncont').val()
                 success: function(r){
                     if(r.mensaje=='Se actualizo la contraseña'){
                         alertify.success('Contraseña Modificada')
+                        $('#editarC').modal('hide')
                     }else{
                         alertify.error('No se pudo actualizar')
                     }
@@ -288,6 +291,31 @@ rcon=$('#rncont').val()
         }else{
             alertify.error('La nueva contraseña debe tener minimo 6 digitos')
             $('#ncont').focus()
+        }
+    }else if(tp==3){
+        u=$('#musuario').val()
+        if(u.length>4){
+            $.ajax({
+                url: 'MPassword',
+                type: 'POST',
+                headers:{'X-CSRF-TOKEN': token},   
+                data: {
+                    idu: idu,
+                    u: u,
+                    tp: tp
+                }, 
+                success: function(r){
+                    alertify.success(r.mensaje)
+                    cargarU()
+                    tabla('usuarios')    
+                    $('#editarC').modal('hide')
+                }, 
+                error: function(){
+                    alertify.error('No se pudo modificar el usuario')
+                }
+            });
+        }else{
+            alertify.error('Nombre de usuario muy corto o el campo esta vacio')
         }
     }
 }

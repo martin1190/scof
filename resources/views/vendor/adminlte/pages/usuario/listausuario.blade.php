@@ -20,7 +20,7 @@
         </div>
       </div>
     </div>    
-    <!-- Modal para editar registro de usuaios -->
+    <!-- Modal para editar registro de usuarios -->
     <div class="modal fade" id="editarU" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
